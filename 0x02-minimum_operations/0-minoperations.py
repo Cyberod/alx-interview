@@ -1,30 +1,22 @@
 #!/usr/bin/python3
-
-
-''' A module that returns the minimum Operations it takes to
-    get to n characters.
-
-    Available operations:
-        copy
-        paste
-'''
+"""0-minoperations"""
 
 
 def minOperations(n):
-    '''
-    returns the minimum operations to get n H's
-    '''
-    min_operations = 0
-
-    if n <= 1:
-        return min_operations
-
-    for i in range(2, n + 1):
-        while n % i == 0:
-            min_operations += i
-            n /= i
-
-    return min_operations
+    """
+    minOperations
+    Gets fewest # of operations needed to result in exactly n H characters
+    """
+    if (n < 2):
+        return 0
+    ops, root = 0, 2
+    while root <= n:
+        if n % root == 0:
+            ops += root
+            n = n / root
+            root -= 1
+        root += 1
+    return ops
 
 
 if __name__ == '__main__':
